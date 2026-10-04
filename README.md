@@ -1,33 +1,86 @@
-## Команды
+# 💍 The Lord of the Rings — справочник персонажей
 
-- запуск клиента - `npm run start`
-- запуск ceрвера - `npm run start`
-- запуск storybook - `npm run storybook`
+Каталог персонажей «Властелина колец» на [The One API](https://the-one-api.dev): поиск, фильтры по расам, сортировка, страница персонажа с цитатами из фильмов, избранное и история поиска в личном кабинете.
 
-### 1 уровень (необходимый минимум)
+Проект сделан на **стажировке в компании LAD** по техническому заданию. ТЗ проверяло работу с React, Redux Toolkit, RTK Query, Firebase, Storybook и feature flags.
 
-- React
+## Возможности
 
-  - Пишем функциональные компоненты c хуками в приоритете над классовыми. ✅
-  - Есть разделение на [умные](https://github.com/Danu-IT/thelordoftherings/blob/main/src/pages/General/Home/components/Filters/Filters.tsx#L9) и [глупые](https://github.com/Danu-IT/thelordoftherings/blob/main/src/components/UI/Button/Button.tsx#L14) компоненты. ✅
-  - Есть рендеринг списков - [Cards](https://github.com/Danu-IT/thelordoftherings/blob/main/src/pages/General/Home/Home.tsx#L104), [Favorites](https://github.com/Danu-IT/thelordoftherings/blob/main/src/pages/Private/Favorite/Favorite.tsx#L18), [History](https://github.com/Danu-IT/thelordoftherings/blob/main/src/pages/Private/History/History.tsx#L54). ✅
-  - Реализована хотя бы одна форма. Используется специальная библиотека построения форм React Hook Form - [Login](https://github.com/Danu-IT/thelordoftherings/blob/main/src/pages/Public/Login/Login.tsx#L27), [Register](https://github.com/Danu-IT/thelordoftherings/blob/main/src/pages/Public/Register/Register.tsx#L17), [Reset](https://github.com/Danu-IT/thelordoftherings/blob/main/src/pages/Public/Register/Register.tsx#L17). ✅
-  - Есть применение Контекст API - [Создание](https://github.com/Danu-IT/thelordoftherings/blob/main/src/context/index.ts), [Использование](https://github.com/Danu-IT/thelordoftherings/blob/main/src/components/Card/Card.tsx#L28). ✅
-  - Есть применение предохранителя - [Создание](https://github.com/Danu-IT/thelordoftherings/blob/main/src/components/ErrorBoundary/ErrorBoundary.tsx#L13), [Использование](https://github.com/Danu-IT/thelordoftherings/blob/main/src/index.tsx#L20). ✅
-  - Есть хотя бы один кастомный хук - [useAppContext](https://github.com/Danu-IT/thelordoftherings/blob/main/src/hooks/useAppContext.ts). ✅
-  - Хотя бы несколько компонентов используют PropTypes - [Like](https://github.com/Danu-IT/thelordoftherings/blob/main/src/components/Like/Like.jsx#L17), [Filter](https://github.com/Danu-IT/thelordoftherings/blob/main/src/components/Filter/Filter.jsx#L36). ✅
-  - Есть применение lazy + Suspense - [routes](https://github.com/Danu-IT/thelordoftherings/blob/main/src/routes/index.ts#L3), [router](https://github.com/Danu-IT/thelordoftherings/blob/main/src/components/Router/Router.tsx#L13). ✅
+**Каталог**
+- Поиск персонажей по имени с подсказками
+- Фильтр по расам и сортировка по имени
+- Пагинация
+- Переключение вида карточек: сетка или список
+- Поделиться персонажем в Telegram (включается через feature flag с сервера)
 
-- Redux
-  - Использую Modern Redux with Redux Toolkit - [store](https://github.com/Danu-IT/thelordoftherings/blob/main/src/store/index.ts). ✅
-  - Используем слайсы - [auth](https://github.com/Danu-IT/thelordoftherings/blob/main/src/store/slices/auth.ts#L22), [speciesSlice](https://github.com/Danu-IT/thelordoftherings/blob/main/src/store/slices/speciesSlice.ts#L18). ✅
-  - Есть хотя бы одна кастомная мидлвара - [cooperationWithFirebase](https://github.com/Danu-IT/thelordoftherings/blob/main/src/store/middleware/cooperationWithFirebase.tsx#L5C14-L5C37). ✅
-  - Используется RTK Query - [ringsAPI](https://github.com/Danu-IT/thelordoftherings/blob/main/src/store/services/RingsService.ts#L7), [Использование](https://github.com/Danu-IT/thelordoftherings/blob/main/src/store/services/RingsService.ts). ✅
-  - Используется Transforming Responses - [transformResponse](https://github.com/Danu-IT/thelordoftherings/blob/main/src/store/services/RingsService.ts#L24), [Функции конвертации](https://github.com/Danu-IT/thelordoftherings/blob/main/src/utils/converter.ts#L2). ✅
+**Персонаж**
+- Подробная информация о персонаже
+- Цитаты персонажа с указанием фильма
 
-### 2 уровень (необязательный)
+**Аккаунт** (Firebase)
+- Регистрация, вход и восстановление пароля
+- Приватные роуты: страницы персонажа, избранного и истории доступны только после входа
+- Избранное: добавление и удаление лайком
+- История поисковых запросов: переход по запросу, удаление по одному или всех сразу
+- Избранное и история синхронизируются с Firestore и сохраняются между сессиями
 
-- Использование TypeScript. ✅
-- Подключен storybook и созданы несколько сторисов - [Button](https://github.com/Danu-IT/thelordoftherings/blob/main/src/components/UI/Button/Button.stories.tsx), [Input](https://github.com/Danu-IT/thelordoftherings/blob/main/src/components/UI/Input/Input.stories.tsx). ✅
-- Feature Flags - [server](https://github.com/Danu-IT/thelordoftherings/blob/main/server/index.js), [react context](https://github.com/Danu-IT/thelordoftherings/blob/main/src/App/App.tsx#L42), [реализация](https://github.com/Danu-IT/thelordoftherings/blob/main/src/components/Card/Card.tsx#L28). ✅
-- Использование Firebase для учетных записей пользователей и их Избранного и Истории поиска - [config](https://github.com/Danu-IT/thelordoftherings/blob/main/src/firebase/index.ts), [function](https://github.com/Danu-IT/thelordoftherings/blob/main/src/firebase/change.ts). ✅
+## Что применено
+
+- Функциональные компоненты и кастомные хуки, разделение на умные и презентационные компоненты
+- Формы на **React Hook Form**
+- **Context API**, **Error Boundary**, **lazy + Suspense** для страниц
+- **Redux Toolkit**: слайсы, `redux-persist`
+- **RTK Query** с `transformResponse`: ответы API приводятся к своему формату через конвертеры
+- **Кастомный middleware**, который синхронизирует избранное и историю с Firebase при изменении стора
+- **Feature flags**: флаги отдаёт небольшой Express-сервер, клиент читает их при старте
+- **Storybook** для UI-компонентов
+- TypeScript, PropTypes
+
+## Стек
+
+![React](https://img.shields.io/badge/React_18-20232A?style=flat&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
+![Redux Toolkit](https://img.shields.io/badge/Redux_Toolkit-764ABC?style=flat&logo=redux&logoColor=white)
+![React Router](https://img.shields.io/badge/React_Router-CA4245?style=flat&logo=react-router&logoColor=white)
+![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=flat&logo=firebase&logoColor=black)
+![styled-components](https://img.shields.io/badge/styled--components-DB7093?style=flat&logo=styled-components&logoColor=white)
+![Storybook](https://img.shields.io/badge/Storybook-FF4785?style=flat&logo=storybook&logoColor=white)
+![Express](https://img.shields.io/badge/Express-000000?style=flat&logo=express&logoColor=white)
+
+React 18, TypeScript, Redux Toolkit + RTK Query, redux-persist, React Router, React Hook Form, Firebase (Auth + Firestore), styled-components, MUI, Framer Motion, react-toastify, Storybook, Express
+
+## Запуск
+
+Для запуска нужен ключ [The One API](https://the-one-api.dev/sign-up) и проект в Firebase.
+
+```bash
+git clone https://github.com/donuwave/lord-rings-react.git
+cd lord-rings-react
+npm install
+```
+
+Создай `.env` в корне:
+
+```
+REACT_APP_API=ключ_the_one_api
+
+REACT_APP_FIREBASE_API_KEY=
+REACT_APP_FIREBASE_AUTH_DOMAIN=
+REACT_APP_FIREBASE_PROJECT_ID=
+REACT_APP_FIREBASE_STORAGE_BUCKET=
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=
+REACT_APP_FIREBASE_API_ID=
+```
+
+Запуск:
+
+```bash
+# сервер с feature flags (порт 5000)
+cd server && npm install && npm run start
+
+# клиент
+npm run start
+
+# Storybook
+npm run storybook
+```
